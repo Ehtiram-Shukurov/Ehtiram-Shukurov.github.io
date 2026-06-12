@@ -1,16 +1,34 @@
-# React + Vite
+# Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+My personal portfolio site — built with React + Vite, deployed via GitHub Pages.
 
-Currently, two official plugins are available:
+**Live site:** [ehtiram-shukurov.github.io](https://ehtiram-shukurov.github.io)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## About
 
-## React Compiler
+A single-page portfolio showcasing my work in VR/XR development, mixed reality, and graphics programming — including research projects from my MS in Computer Science at the University of Minnesota.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+- React
+- Vite
+- Deployed with `gh-pages`
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Development
+
+```bash
+npm install
+npm run dev
+```
+
+## Deployment
+
+```bash
+npm run deploy
+```
+
+This builds the project and pushes the `dist` folder to the `gh-pages` branch, which GitHub Pages serves.
+
+---
+
+*Design and content put together with the help of Claude (Anthropic).*
