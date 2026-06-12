@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import logo from '/umn_logo.jpeg';
 
 const DBASE = "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/";
 
@@ -22,7 +23,7 @@ const UMNLogo = () => (
     borderRadius: 8, display: "flex", alignItems: "center",
     justifyContent: "center", flexShrink: 0,
   }}><img
-      src="umn_logo.jpeg"
+      src={logo}
       alt=""
       style={{ width: 42, height: 42 }}
     />
