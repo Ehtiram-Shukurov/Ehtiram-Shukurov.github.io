@@ -586,7 +586,7 @@ export default function Portfolio() {
                 </div>
               ))}
             </div>
-            <a href="resume.pdf" className="resume-link" onClick={e => e.preventDefault()}>
+            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="resume-link">
               {c.resume} <span>↗</span>
             </a>
           </section>
