@@ -18,13 +18,32 @@ const TAG_ICON = {
 
 const UMNLogo = () => (
   <div style={{
-    width: 42, height: 42, background: "#7A0019",
+    width: 42, height: 42,
     borderRadius: 8, display: "flex", alignItems: "center",
-    justifyContent: "center", fontFamily: "Georgia, 'Times New Roman', serif",
-    fontWeight: 900, fontSize: 24, color: "white",
-    flexShrink: 0, userSelect: "none", letterSpacing: "-0.02em",
-  }}>M</div>
+    justifyContent: "center", flexShrink: 0,
+  }}><img
+      src="/umn_logo.jpeg"
+      alt=""
+      style={{ width: 42, height: 42 }}
+    />
+  </div>
 );
+
+const UnityBadge = () => (
+  <div style={{
+    width: 42, height: 42, background: "#1b1b1b",
+    borderRadius: 8, display: "flex", alignItems: "center",
+    justifyContent: "center", flexShrink: 0,
+  }}>
+    <img
+      src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/unity/unity-original.svg"
+      alt=""
+      style={{ width: 24, height: 24, filter: "invert(1)" }}
+    />
+  </div>
+);
+
+const OrgBadge = ({ logo }) => (logo === "unity" ? <UnityBadge /> : <UMNLogo />);
 
 const IconGH = () => (
   <svg viewBox="0 0 24 24" fill="currentColor">
@@ -58,9 +77,9 @@ const RAW = "https://raw.githubusercontent.com/Ehtiram-Shukurov";
 const C = {
   en: {
     role: "XR Developer & Researcher",
-    tagline: "Building virtual worlds that reveal how the human mind responds to them.",
+    tagline: "I build VR experiences and research how people respond to them.",
     status: "Open to opportunities",
-    navLabels: ["About", "Experience", "Projects", "Skills"],
+    navLabels: ["About", "Experience", "Education", "Projects", "Skills"],
     about: [
       [
         { t: "I'm a " }, { t: "Computer Science Master's student", s: "b" },
@@ -68,15 +87,17 @@ const C = {
         { t: "how does a virtual world make you feel, and why?", s: "h" },
       ],
       [
-        { t: "My thesis examines how the realism of " }, { t: "MetaHuman avatars", s: "b" },
-        { t: " influences social evaluative threat responses, using the Trier Social Stress Test implemented in Unreal Engine 5. Advised by Prof. Victoria Interrante, funded by the Azerbaijani Government Scholarship." },
+        { t: "My research explores " }, { t: "virtual reality, avatar realism, and how immersive environments affect human perception and stress responses", s: "b" },
+        { t: ". I'm currently working with MetaHuman avatars in Unreal Engine 5, advised by Prof. Victoria Interrante." },
       ],
-      [{ t: "Outside research, I build things — VR experiences, game prototypes, interactive systems. I believe immersive technology is one of the most powerful mediums ever created, and I want to push what it's capable of, both technically and emotionally." }],
+      [{ t: "Outside research, I build VR experiences and game prototypes in Unity and Unreal Engine. I'm interested in how far immersive technology can go, both technically and emotionally." }],
     ],
     experience: [
-      { period: "2024 — Now", role: "Graduate Research Assistant", org: "XR & Perception Lab, UMN", desc: "Designing and running VR-based psychological studies using MetaHuman avatars and the Trier Social Stress Test protocol in Unreal Engine 5. Advised by Prof. Victoria Interrante." },
-      { period: "2025", role: "Teaching Assistant", org: "CSCI 5619: Virtual Reality, UMN", desc: "Supporting students in VR development with Unity and Meta Quest. Lab facilitation and student assessment." },
-      { period: "2024 — Now", role: "MS Computer Science", org: "University of Minnesota", desc: "GPA 3.727 · Funded by Azerbaijani Government Scholarship. Focus: XR, avatar realism, and psychological stress in virtual environments." },
+      { period: "2025 — Now", role: "Graduate Researcher", org: "XR & Perception Lab, University of Minnesota", logo: "umn", desc: "Conducting thesis research under Prof. Victoria Interrante on how MetaHuman avatar realism affects stress responses in virtual reality, using Unreal Engine 5." },
+      { period: "2022", role: "Unity Developer (Intern)", org: "Azerbaijan Technical University", logo: "unity", desc: "Built gameplay mechanics and prototypes in Unity and C#, including a demo game called Sharky. Also learned the basics of Blender for asset creation." },
+    ],
+    education: [
+      { period: "2024 — Now", role: "MS in Computer Science", org: "University of Minnesota", logo: "umn", desc: "GPA 3.727. Coursework in computer graphics, virtual reality, and human-computer interaction." },
     ],
     badges: { progress: "In Progress" },
     linkLabels: { code: "View Code", demo: "Watch Demo" },
@@ -84,7 +105,7 @@ const C = {
       {
         title: "Social Stress VR Study",
         sub: "MS Thesis · Unreal Engine 5",
-        desc: "Investigating how MetaHuman avatar realism influences social evaluative threat responses. Participants deliver a speech to a virtual panel inside a custom UE5 environment using the Trier Social Stress Test — a gold-standard protocol for inducing measurable psychological stress.",
+        desc: "Early-stage thesis research into how MetaHuman avatar realism affects social stress responses in virtual reality. Participants interact with a virtual panel inside a custom Unreal Engine 5 environment while their responses are measured.",
         tags: ["Unreal Engine 5", "MetaHuman", "VR", "C++", "Python"],
         featured: true,
         inProgress: true,
@@ -92,7 +113,7 @@ const C = {
       {
         title: "Resilience Protocol",
         sub: "VR Stress Inoculation · Unreal Engine 5.6",
-        desc: "A first-person VR horror escape game built as a Stress Inoculation Training simulation. A MetaHuman-driven AI hunts the player through physics-based puzzles — fuse boxes, a physical keypad, rotating paintings — while adaptive audio and three escalating stages build toward a research-grounded resilience training experience.",
+        desc: "A first-person VR horror escape game built as a stress inoculation training simulation. A MetaHuman-driven AI hunts the player through physics-based puzzles like fuse boxes, a physical keypad, and rotating paintings, with adaptive audio and three escalating stages.",
         tags: ["Unreal Engine 5", "MetaHuman", "Blueprints", "VR", "AI"],
         image: `${RAW}/ResilienceProtocol/main/media/screenshots/thumbnail.png`,
         github: `${GH}/ResilienceProtocol`,
@@ -109,7 +130,7 @@ const C = {
       {
         title: "Mixed Reality AI Assistant",
         sub: "Mixed Reality · Meta Quest 3 · Azure OpenAI",
-        desc: "A spatially-aware AI companion for Meta Quest 3 that hears, sees, and understands your room. Built progressively from hand tracking and a full speech-to-speech GPT pipeline to live passthrough camera vision and scene-aware navigation via OpenAI function calling.",
+        desc: "An AI assistant for Meta Quest 3 that can hear, see, and understand your room. It started with hand tracking, then added a speech-to-speech GPT pipeline, then live camera input and scene-aware navigation using OpenAI function calling.",
         tags: ["Unity", "Meta Quest", "Azure OpenAI", "C#", "Mixed Reality"],
         image: `${RAW}/mixed-reality-visualizations/main/media/a5.png`,
         github: `${GH}/mixed-reality-visualizations`,
@@ -117,7 +138,7 @@ const C = {
       {
         title: "Living Strokes",
         sub: "VR Drawing · Meta Quest 3",
-        desc: "A gesture-driven VR drawing tool where every stroke comes alive through your own body movement. Recorded gestures are baked into GPU motion textures and replayed through a custom HLSL vertex shader, turning each brushstroke into a continuously animated, living artifact.",
+        desc: "A VR drawing tool where each stroke is animated by a gesture you record right after drawing it. The gesture gets baked into a GPU motion texture and replayed through a custom HLSL vertex shader, so every stroke keeps moving.",
         tags: ["Unity", "Meta Quest", "HLSL", "C#", "VR"],
         image: `${RAW}/living-strokes/main/Media/animated_strokes.png`,
         github: `${GH}/living-strokes`,
@@ -125,7 +146,7 @@ const C = {
       {
         title: "Platform Ink: NPR Platformer",
         sub: "Graphics Engine · C++ / OpenGL",
-        desc: "A third-person 3D platformer built from scratch in C++ and OpenGL, combining a playable game loop with a stylized non-photorealistic rendering pipeline — toon shading, rim lighting, and inverted-hull outlines on top of a custom collision and level system.",
+        desc: "A third-person 3D platformer built from scratch in C++ and OpenGL, with a stylized non-photorealistic rendering pipeline including toon shading, rim lighting, and inverted-hull outlines, on top of a custom collision and level system.",
         tags: ["C++", "OpenGL", "GLSL", "SDL3"],
         image: `${RAW}/platform-ink-npr-platformer/main/media/level.png`,
         github: `${GH}/platform-ink-npr-platformer`,
@@ -137,9 +158,9 @@ const C = {
   },
   az: {
     role: "XR Tərtibatçı və Tədqiqatçı",
-    tagline: "İnsan zehninin reaksiyasını üzə çıxaran virtual dünyalar yaradıram.",
+    tagline: "VR təcrübələri yaradıram və insanların onlara necə reaksiya verdiyini araşdırıram.",
     status: "İş imkanlarına açıqam",
-    navLabels: ["Haqqımda", "Təcrübə", "Layihələr", "Bacarıqlar"],
+    navLabels: ["Haqqımda", "Təcrübə", "Təhsil", "Layihələr", "Bacarıqlar"],
     about: [
       [
         { t: "Mən " }, { t: "Minnesota Universitetinin Kompüter Elmləri üzrə magistrantıyam", s: "b" },
@@ -147,15 +168,17 @@ const C = {
         { t: "virtual dünya sizi necə hiss etdirir və niyə?", s: "h" },
       ],
       [
-        { t: "Dissertasiyam " }, { t: "MetaHuman avatarlarının", s: "b" },
-        { t: " realizminin Trier Sosial Stress Testi vasitəsilə sosial qiymətləndirici təhlükə reaksiyalarına necə təsir etdiyini Unreal Engine 5-də araşdırır. Prof. Victoria Interrante tərəfindən rəhbərlik edilir, Azərbaycan Hökuməti Təqaüdü ilə maliyyələşdirilir." },
+        { t: "Tədqiqatım " }, { t: "virtual reallıq, avatar realizmi və immersiv mühitlərin insan qavrayışına və stress reaksiyalarına necə təsir etdiyini", s: "b" },
+        { t: " araşdırır. Hazırda Unreal Engine 5-də MetaHuman avatarları ilə işləyirəm, Prof. Victoria Interrante tərəfindən rəhbərlik edilir." },
       ],
-      [{ t: "Tədqiqatdan kənar müxtəlif şeylər yaradıram — VR təcrübələri, oyun prototipləri, interaktiv sistemlər. İnanıram ki, immersiv texnologiya tarixdə yaradılmış ən güclü medialardan biridir və onun imkanlarını — həm texniki, həm də emosional baxımdan — genişləndirmək istəyirəm." }],
+      [{ t: "Tədqiqatdan kənar Unity və Unreal Engine-də VR təcrübələri və oyun prototipləri hazırlayıram. İmmersiv texnologiyanın nə qədər irəli gedə biləcəyi, həm texniki, həm də emosional baxımdan, məni maraqlandırır." }],
     ],
     experience: [
-      { period: "2024 — İndiyədək", role: "Tədqiqat Köməkçisi", org: "XR və Qavrayış Laboratoriyası, UMN", desc: "Unreal Engine 5-də MetaHuman avatarları və Trier Sosial Stress Testi protokolundan istifadə edərək VR əsaslı psixoloji tədqiqatlar layihələndirir və aparıram. Prof. Victoria Interrante tərəfindən rəhbərlik edilir." },
-      { period: "2025", role: "Tədris Köməkçisi", org: "CSCI 5619: Virtual Reallıq, UMN", desc: "Unity və Meta Quest ilə VR inkişafında tələbələrə dəstək göstərirəm. Laboratoriya məşğələlərini aparır, tələbələri qiymətləndirirəm." },
-      { period: "2024 — İndiyədək", role: "Kompüter Elmləri üzrə Magistr", org: "Minnesota Universiteti", desc: "GPA 3.727 · Azərbaycan Hökuməti Təqaüdü ilə maliyyələşdirilir. İstiqamət: XR, avatar realizmi və virtual mühitlərdə psixoloji stress." },
+      { period: "2025 — İndiyədək", role: "Magistr Tədqiqatçısı", org: "XR və Qavrayış Laboratoriyası, Minnesota Universiteti", logo: "umn", desc: "Prof. Victoria Interrante rəhbərliyi ilə MetaHuman avatar realizminin virtual reallıqda stress reaksiyalarına necə təsir etdiyini Unreal Engine 5-də araşdırıram." },
+      { period: "2022", role: "Unity Developer (Təcrübə)", org: "Azərbaycan Texniki Universiteti", logo: "unity", desc: "Unity və C# ilə oyun mexanikaları və prototiplər hazırladım, o cümlədən \"Sharky\" adlı demo oyun. Həmçinin Blender-in əsaslarını öyrəndim." },
+    ],
+    education: [
+      { period: "2024 — İndiyədək", role: "Kompüter Elmləri üzrə Magistr", org: "Minnesota Universiteti", logo: "umn", desc: "GPA 3.727. Kompüter qrafikası, virtual reallıq və insan-kompüter qarşılıqlı əlaqəsi üzrə dərslər." },
     ],
     badges: { progress: "Davam edir" },
     linkLabels: { code: "Koda Bax", demo: "Demoya Bax" },
@@ -163,7 +186,7 @@ const C = {
       {
         title: "Sosial Stress VR Tədqiqatı",
         sub: "Magistr Dissertasiyası · Unreal Engine 5",
-        desc: "MetaHuman avatar realizminin sosial qiymətləndirici təhlükə reaksiyalarına necə təsir etdiyini araşdırır. İştirakçılar psixoloji stress yaradan qızıl standart protokol olan Trier Sosial Stress Testindən istifadə edərək xüsusi UE5 mühitindəki virtual komissiyaya nitq edir.",
+        desc: "MetaHuman avatar realizminin virtual reallıqda sosial stress reaksiyalarına necə təsir etdiyini araşdıran ilkin mərhələ dissertasiya tədqiqatı. İştirakçılar xüsusi Unreal Engine 5 mühitindəki virtual komissiya ilə qarşılıqlı əlaqədə olur və reaksiyaları ölçülür.",
         tags: ["Unreal Engine 5", "MetaHuman", "VR", "C++", "Python"],
         featured: true,
         inProgress: true,
@@ -171,7 +194,7 @@ const C = {
       {
         title: "Resilience Protocol",
         sub: "VR Stress Aşılaması · Unreal Engine 5.6",
-        desc: "MetaHuman əsaslı süni intellektin oyunçunu fiziki tapmacalar arasında izlədiyi — sığorta qutuları, fiziki klaviatura, fırlanan rəsmlər — Stress Aşılama Təlimi simulyasiyası kimi hazırlanmış birinci şəxs VR dəhşət qaçış oyunu. Adaptiv səs effektləri və üç güclənən mərhələ tədqiqata əsaslanan davamlılıq təlimi təcrübəsi yaradır.",
+        desc: "MetaHuman əsaslı süni intellektin oyunçunu sığorta qutuları, fiziki klaviatura və fırlanan rəsmlər kimi fiziki tapmacalar arasında izlədiyi, stress aşılama təlimi simulyasiyası kimi hazırlanmış birinci şəxs VR dəhşət qaçış oyunu. Adaptiv səs effektləri və üç güclənən mərhələ var.",
         tags: ["Unreal Engine 5", "MetaHuman", "Blueprints", "VR", "AI"],
         image: `${RAW}/ResilienceProtocol/main/media/screenshots/thumbnail.png`,
         github: `${GH}/ResilienceProtocol`,
@@ -188,7 +211,7 @@ const C = {
       {
         title: "Qarışıq Reallıq AI Köməkçisi",
         sub: "Qarışıq Reallıq · Meta Quest 3 · Azure OpenAI",
-        desc: "Meta Quest 3 üçün otağınızı eşidən, görən və başa düşən məkan-şüurlu AI yoldaş. Əl izləməsi və tam nitq-nitq GPT pipeline-ından canlı passthrough kamera görüşü və OpenAI funksiya çağırışı ilə məkan-şüurlu naviqasiyaya qədər mərhələli şəkildə hazırlanmışdır.",
+        desc: "Meta Quest 3 üçün otağınızı eşidə, görə və başa düşə bilən AI köməkçisi. Əvvəlcə əl izləməsi, sonra tam nitq-nitq GPT pipeline-ı, daha sonra canlı kamera görüntüsü və OpenAI funksiya çağırışı ilə məkan-şüurlu naviqasiya əlavə edildi.",
         tags: ["Unity", "Meta Quest", "Azure OpenAI", "C#", "Mixed Reality"],
         image: `${RAW}/mixed-reality-visualizations/main/media/a5.png`,
         github: `${GH}/mixed-reality-visualizations`,
@@ -196,7 +219,7 @@ const C = {
       {
         title: "Living Strokes",
         sub: "VR Çəkim · Meta Quest 3",
-        desc: "Hər vuruşun öz bədən hərəkətiniz vasitəsilə canlandığı jest-əsaslı VR çəkim aləti. Qeydə alınan jestlər GPU hərəkət teksturalarına çevrilir və xüsusi HLSL vertex shader vasitəsilə təkrarlanır, hər fırça vuruşunu davamlı animasiyalı, canlı bir əsərə çevirir.",
+        desc: "Hər vuruşun çəkildikdən dərhal sonra qeydə alınan jest ilə canlandığı VR çəkim aləti. Jest GPU hərəkət teksturasına çevrilir və xüsusi HLSL vertex shader vasitəsilə təkrarlanır, beləliklə hər vuruş hərəkətdə qalır.",
         tags: ["Unity", "Meta Quest", "HLSL", "C#", "VR"],
         image: `${RAW}/living-strokes/main/Media/animated_strokes.png`,
         github: `${GH}/living-strokes`,
@@ -204,7 +227,7 @@ const C = {
       {
         title: "Platform Ink: NPR Platformer",
         sub: "Qrafika Mühərriki · C++ / OpenGL",
-        desc: "Sıfırdan C++ və OpenGL ilə hazırlanmış üçüncü şəxs 3D platformer. Oynanılan oyun dövrəsini stilizə edilmiş foto-realist olmayan render pipeline-ı ilə birləşdirir — toon shading, rim lighting və tərs hull konturları, xüsusi kolliziya və səviyyə sistemi üzərində.",
+        desc: "Sıfırdan C++ və OpenGL ilə hazırlanmış üçüncü şəxs 3D platformer. Toon shading, rim lighting və tərs hull konturlarını əhatə edən stilizə render pipeline-ı, xüsusi kolliziya və səviyyə sistemi üzərində.",
         tags: ["C++", "OpenGL", "GLSL", "SDL3"],
         image: `${RAW}/platform-ink-npr-platformer/main/media/level.png`,
         github: `${GH}/platform-ink-npr-platformer`,
@@ -216,7 +239,7 @@ const C = {
   },
 };
 
-const NAV_IDS = ["about", "experience", "projects", "skills"];
+const NAV_IDS = ["about", "experience", "education", "projects", "skills"];
 
 const Para = ({ parts }) => (
   <p className="about-p">
@@ -344,6 +367,7 @@ const CSS = `
   .p-section:nth-child(2) { transition-delay: 0.1s; }
   .p-section:nth-child(3) { transition-delay: 0.15s; }
   .p-section:nth-child(4) { transition-delay: 0.2s; }
+  .p-section:nth-child(5) { transition-delay: 0.25s; }
 
   .section-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--secondary); margin-bottom: 36px; display: flex; align-items: center; gap: 16px; }
   .section-label::after { content: ''; flex: 1; height: 1px; background: rgba(148,163,184,0.12); }
@@ -518,7 +542,24 @@ export default function Portfolio() {
             <div className="exp-list">
               {c.experience.map((e, i) => (
                 <div key={i} className="exp-item">
-                  <div className="exp-logo"><UMNLogo /></div>
+                  <div className="exp-logo"><OrgBadge logo={e.logo} /></div>
+                  <div className="exp-period">{e.period}</div>
+                  <div>
+                    <div className="exp-role">{e.role}</div>
+                    <div className="exp-org">{e.org}</div>
+                    <div className="exp-desc">{e.desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section id="education" className="p-section">
+            <div className="section-label">{c.navLabels[2]}</div>
+            <div className="exp-list">
+              {c.education.map((e, i) => (
+                <div key={i} className="exp-item">
+                  <div className="exp-logo"><OrgBadge logo={e.logo} /></div>
                   <div className="exp-period">{e.period}</div>
                   <div>
                     <div className="exp-role">{e.role}</div>
@@ -534,7 +575,7 @@ export default function Portfolio() {
           </section>
 
           <section id="projects" className="p-section">
-            <div className="section-label">{c.navLabels[2]}</div>
+            <div className="section-label">{c.navLabels[3]}</div>
             <div className="proj-list">
               {c.projects.map((p, i) => (
                 <div key={i} className={`proj-card${p.featured ? " featured" : ""}`}>
@@ -572,7 +613,7 @@ export default function Portfolio() {
           </section>
 
           <section id="skills" className="p-section">
-            <div className="section-label">{c.navLabels[3]}</div>
+            <div className="section-label">{c.navLabels[4]}</div>
             <div className="skills-grid">
               {c.skills.map((s, i) => <SkillBadge key={i} label={s} />)}
             </div>
