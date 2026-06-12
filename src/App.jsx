@@ -44,7 +44,21 @@ const UnityBadge = () => (
   </div>
 );
 
-const OrgBadge = ({ logo }) => (logo === "unity" ? <UnityBadge /> : <UMNLogo />);
+const AZTUBadge = () => (
+  <div style={{
+    width: 42, height: 42, background: "#0c1f4a",
+    borderRadius: 8, display: "flex", alignItems: "center",
+    justifyContent: "center", flexShrink: 0,
+    fontFamily: "'Space Mono', monospace", fontWeight: 700,
+    fontSize: 10, color: "#fff", letterSpacing: "0.02em",
+  }}>AZTU</div>
+);
+
+const OrgBadge = ({ logo }) => {
+  if (logo === "unity") return <UnityBadge />;
+  if (logo === "aztu") return <AZTUBadge />;
+  return <UMNLogo />;
+};
 
 const IconGH = () => (
   <svg viewBox="0 0 24 24" fill="currentColor">
@@ -98,7 +112,8 @@ const C = {
       { period: "2022", role: "Unity Developer (Intern)", org: "Azerbaijan Technical University", logo: "unity", desc: "Built gameplay mechanics and prototypes in Unity and C#, including a demo game called Sharky. Also learned the basics of Blender for asset creation." },
     ],
     education: [
-      { period: "2024 — Now", role: "MS in Computer Science", org: "University of Minnesota", logo: "umn", desc: "GPA 3.727. Coursework in computer graphics, virtual reality, and human-computer interaction." },
+      { period: "2024 — 2026", role: "MS in Computer Science", org: "University of Minnesota", logo: "umn", desc: "GPA 3.727. Coursework in computer graphics, virtual reality, and human-computer interaction." },
+      { period: "2020 — 2024", role: "BS in Information Technology", org: "Azerbaijan Technical University (SABAH Groups)", logo: "aztu", desc: "Graduated with a 97/100 GPA." },
     ],
     badges: { progress: "In Progress" },
     linkLabels: { code: "View Code", demo: "Watch Demo" },
@@ -179,7 +194,8 @@ const C = {
       { period: "2022", role: "Unity Developer (Təcrübə)", org: "Azərbaycan Texniki Universiteti", logo: "unity", desc: "Unity və C# ilə oyun mexanikaları və prototiplər hazırladım, o cümlədən \"Sharky\" adlı demo oyun. Həmçinin Blender-in əsaslarını öyrəndim." },
     ],
     education: [
-      { period: "2024 — İndiyədək", role: "Kompüter Elmləri üzrə Magistr", org: "Minnesota Universiteti", logo: "umn", desc: "GPA 3.727. Kompüter qrafikası, virtual reallıq və insan-kompüter qarşılıqlı əlaqəsi üzrə dərslər." },
+      { period: "2024 — 2026", role: "Kompüter Elmləri üzrə Magistr", org: "Minnesota Universiteti", logo: "umn", desc: "GPA 3.727. Kompüter qrafikası, virtual reallıq və insan-kompüter qarşılıqlı əlaqəsi üzrə dərslər." },
+      { period: "2020 — 2024", role: "İnformasiya Texnologiyaları üzrə Bakalavr", org: "Azərbaycan Texniki Universiteti (SABAH Qrupları)", logo: "aztu", desc: "100 balıq şkala üzrə 97 qiymət ilə bitirmişəm." },
     ],
     badges: { progress: "Davam edir" },
     linkLabels: { code: "Koda Bax", demo: "Demoya Bax" },
@@ -570,7 +586,7 @@ export default function Portfolio() {
                 </div>
               ))}
             </div>
-            <a href="#" className="resume-link" onClick={e => e.preventDefault()}>
+            <a href="resume.pdf" className="resume-link" onClick={e => e.preventDefault()}>
               {c.resume} <span>↗</span>
             </a>
           </section>
