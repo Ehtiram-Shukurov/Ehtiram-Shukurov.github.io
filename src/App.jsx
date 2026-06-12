@@ -22,7 +22,7 @@ const UMNLogo = () => (
     borderRadius: 8, display: "flex", alignItems: "center",
     justifyContent: "center", flexShrink: 0,
   }}><img
-      src="/umn_logo.jpeg"
+      src="umn_logo.jpeg"
       alt=""
       style={{ width: 42, height: 42 }}
     />
