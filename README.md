@@ -1,25 +1,30 @@
-# Portfolio
+# Ehtiram Shukurov — Portfolio
 
-My personal portfolio site — built with React + Vite, deployed via GitHub Pages.
+Personal portfolio for software engineering, web development, AI integrations, graphics, and VR/XR research.
 
-**Live site:** [ehtiram-shukurov.github.io](https://ehtiram-shukurov.github.io)
+**Live site:** [ehtiram-shukurov.github.io](https://ehtiram-shukurov.github.io/)
 
-## About
+## Stack
 
-A single-page portfolio showcasing my work in VR/XR development, mixed reality, and graphics programming — including research projects from my MS in Computer Science at the University of Minnesota.
-
-## Tech Stack
-
-- React
-- Vite
-- Deployed with `gh-pages`
+React + Vite, with English and Azerbaijani content and a responsive layout. Published through GitHub Pages.
 
 ## Development
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
+
+```bash
+npm run lint
+npm run build
+```
+
+## Content
+
+- `src/content.js`: English and Azerbaijani copy, projects, experience, and skills.
+- `src/App.css`: styles for desktop and mobile, including reduced-motion support.
+- `public/resume.pdf`: current résumé, available at `/resume.pdf`.
 
 ## Deployment
 
@@ -27,8 +32,8 @@ npm run dev
 npm run deploy
 ```
 
-This builds the project and pushes the `dist` folder to the `gh-pages` branch, which GitHub Pages serves.
+This builds the project and publishes `dist` to the `gh-pages` branch. Keep source changes on `main` so the live build can be reproduced.
 
 ---
 
-*Design and content put together with the help of Claude (Anthropic).*
+*Original design and content put together with the help of Claude (Anthropic).*
