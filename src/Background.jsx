@@ -10,7 +10,22 @@ export default function Background() {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(60, innerWidth / innerHeight, 0.1, 1000);
     camera.position.z = 22;
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    let renderer;
+    let fallbackContext;
+    try {
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    } catch {
+      // Keep the same scene visible when graphics acceleration is unavailable.
+      const canvas = document.createElement('canvas');
+      fallbackContext = canvas.getContext('2d');
+      renderer = {
+        domElement: canvas,
+        setPixelRatio() {},
+        setSize(width, height) { canvas.width = width; canvas.height = height; },
+        render() {},
+        dispose() {},
+      };
+    }
     renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
     renderer.setSize(innerWidth, innerHeight);
     element.appendChild(renderer.domElement);
@@ -43,6 +58,46 @@ export default function Background() {
       return mesh;
     });
     const pointer = { x: 0, y: 0 };
+    const edges = shapes.map(mesh => new THREE.EdgesGeometry(mesh.geometry));
+    const project = (x, y, z, matrix) => {
+      const point = new THREE.Vector3(x, y, z);
+      if (matrix) point.applyMatrix4(matrix);
+      point.project(camera);
+      return [(point.x + 1) * innerWidth / 2, (1 - point.y) * innerHeight / 2];
+    };
+    const drawFallback = count => {
+      const ctx = fallbackContext;
+      if (!ctx) return;
+      camera.updateMatrixWorld();
+      ctx.clearRect(0, 0, innerWidth, innerHeight);
+      ctx.strokeStyle = '#38bdf8';
+      ctx.globalAlpha = 0.2;
+      ctx.beginPath();
+      for (let i = 0; i < count; i++) {
+        ctx.moveTo(...project(...lines.subarray(i * 6, i * 6 + 3)));
+        ctx.lineTo(...project(...lines.subarray(i * 6 + 3, i * 6 + 6)));
+      }
+      ctx.stroke();
+      ctx.fillStyle = '#38bdf8';
+      ctx.globalAlpha = 0.95;
+      for (let i = 0; i < 30; i++) {
+        const [x, y] = project(...positions.subarray(i * 3, i * 3 + 3));
+        ctx.beginPath(); ctx.arc(x, y, 2, 0, Math.PI * 2); ctx.fill();
+      }
+      shapes.forEach((mesh, i) => {
+        mesh.updateMatrixWorld();
+        const vertices = edges[i].attributes.position.array;
+        ctx.strokeStyle = '#' + mesh.material.color.getHexString();
+        ctx.globalAlpha = mesh.material.opacity;
+        ctx.beginPath();
+        for (let j = 0; j < vertices.length; j += 6) {
+          ctx.moveTo(...project(...vertices.subarray(j, j + 3), mesh.matrixWorld));
+          ctx.lineTo(...project(...vertices.subarray(j + 3, j + 6), mesh.matrixWorld));
+        }
+        ctx.stroke();
+      });
+      ctx.globalAlpha = 1;
+    };
     const motion = matchMedia('(prefers-reduced-motion: reduce)');
     const move = event => { pointer.x = event.clientX / innerWidth * 2 - 1; pointer.y = 1 - event.clientY / innerHeight * 2; };
     const resize = () => {
@@ -79,6 +134,7 @@ export default function Background() {
       lineGeometry.attributes.position.needsUpdate = true;
       lineGeometry.setDrawRange(0, count * 2);
       renderer.render(scene, camera);
+      drawFallback(count);
       frame = requestAnimationFrame(render);
     };
     window.addEventListener('pointermove', move, { passive: true });
@@ -89,6 +145,7 @@ export default function Background() {
       window.removeEventListener('pointermove', move);
       window.removeEventListener('resize', resize);
       [points, connections, ...shapes].forEach(object => { object.geometry.dispose(); object.material.dispose(); });
+      edges.forEach(geometry => geometry.dispose());
       renderer.dispose();
       element.removeChild(renderer.domElement);
     };
