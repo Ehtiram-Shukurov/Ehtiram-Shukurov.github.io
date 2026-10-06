@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { CONTENT } from "./content";
 import "./App.css";
+import Background from './Background';
 import logo from '/umn_logo.jpeg';
 
 const DBASE = "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/";
@@ -202,6 +203,7 @@ export default function Portfolio() {
   return (
     <>
       <a className="skip-link" href="#main-content">{lang === "en" ? "Skip to content" : "Məzmuna keç"}</a>
+      <Background />
       <div className="portfolio" ref={wrapRef} onMouseMove={handleMouseMove} >
 
         <aside className="sidebar">
